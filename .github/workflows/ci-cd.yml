@@ -23,4 +23,10 @@ jobs:
 
     - name: Push Docker image
       run: docker push navaneetha4/flask-app:${{ github.sha }}
+      
+    - name: Set up Kubeconfig
+      run: |
+        mkdir -p ~/.kube
+        echo "${{ secrets.KUBECONFIG_DATA }}" | base64 -d > ~/.kube/config
+
 
